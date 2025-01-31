@@ -1,0 +1,48 @@
+{% extends "student_template/base_template.html" %}
+{% block page_title %}
+Home
+{% endblock page_title %}
+
+{% load static %}
+
+{% block main_content %}
+
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6 col-6">
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{ total_students }}<sup style="font-size: 20px">%</sup></h3>
+
+                <p>Total Students</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <div class="col-lg-6 col-6">
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{ total_subjects }}</h3>
+
+                <p>Total Subjects</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+        </div>
+      </div>
+
+    </section>
+
+{% endblock main_content %}

@@ -1,0 +1,76 @@
+{% extends "admin_template/base_template.html" %}
+{% block page_title %}
+Add Subject
+{% endblock page_title %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Subject</h3>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 25px">
+                        {% if messages %}
+                            <div class="col-12">
+                                {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger">
+                                            {{message}}
+                                        </div>
+                                    {% else %}
+                                        <div class="alert alert-{{message.tags}}">
+                                            {{message}}
+                                        </div>
+                                    {% endif %}
+                    
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- form start -->
+                    <form role="form" action="/add_subject_save" method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="cname">Subject Name </label>
+                                <input type="text" class="form-control" id="cname" name="subject_name" placeholder="Enter Subject">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Course</label>
+                                <select name="course" class="form-control">
+                                    {% for course in courses %}
+                                      <option value="{{ course.id }}">{{ course.course_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Staff</label>
+                                <select name="staff" class="form-control">
+                                    {% for staff in staffs %}
+                                      <option value="{{ staff.id }}">{{ staff.first_name }} {{ staff.last_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Add Subject</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+
+{% endblock main_content %}

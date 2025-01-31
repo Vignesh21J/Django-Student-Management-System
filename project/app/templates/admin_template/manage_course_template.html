@@ -1,0 +1,48 @@
+{% extends "admin_template/base_template.html" %}
+{% block page_title %}
+Manage Course
+{% endblock page_title %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Course Details</h3>
+              </div>
+              
+              <!-- /.card-header -->
+              <div class="card-body table-responsive p-2">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Course Name</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {% for course in courses %}
+                          <tr>
+                              <td>{{course.id}}</td>
+                              <td>{{course.course_name}}</td>
+                          </tr>
+                      {% endfor %}
+                    </tbody>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+
+{% endblock main_content %}

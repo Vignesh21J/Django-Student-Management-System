@@ -1,0 +1,80 @@
+{% extends "staff_template/base_template.html" %}
+{% block page_title %}
+Edit Profile
+{% endblock page_title %}
+
+{% block main_content %}
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Edit Profile</h3>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 25px">
+                        {% if messages %}
+                            <div class="col-12">
+                                {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                        <div class="alert alert-danger">
+                                            {{message}}
+                                        </div>
+                                    {% else %}
+                                        <div class="alert alert-{{message.tags}}">
+                                            {{message}}
+                                        </div>
+                                    {% endif %}
+                    
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- form start -->
+                    <form role="form" action="{% url 'staff_profile_save' %}" method="post">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="cname">UserName</label>
+                                <input type="text" name="username" value="{{ user.username }}" disabled="disabled" class="form-control" id="cname">
+                            </div>
+                            <div class="form-group">
+                                <label for="cname">Email</label>
+                                <input type="email" name="email" value="{{ user.email }}" disabled="disabled" class="form-control" id="cname">
+                            </div>
+                            <div class="form-group">
+                                <label for="cname">FirstName</label>
+                                <input type="text" name="first_name" value="{{ user.first_name }}" class="form-control" id="cname">
+                            </div>
+                            <div class="form-group">
+                                <label for="cname">LastName</label>
+                                <input type="text" name="last_name" value="{{ user.last_name }}" class="form-control" id="cname">
+                            </div>
+                            <div class="form-group">
+                                <label for="cname">Address</label>
+                                <input type="text" name="address" value="{{ staff.address }}" class="form-control" id="cname">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cname">Change Password?</label>
+                                <input type="text" name="password" class="form-control" placeholder="Fill Only If you want to Change Password" id="cname">
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Save Profile</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+
+{% endblock main_content %}
